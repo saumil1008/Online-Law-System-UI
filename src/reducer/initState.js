@@ -1,5 +1,6 @@
 const ProfileReducerInit = {
   isLoggedIn: false,
+  isCreate: false
 };
 
 const home = {
@@ -11,7 +12,8 @@ const lawyer = {
 };
 
 const court = {
-  data: []
+  data: [],
+  allCourts: []
 };
 
 const criminal = {

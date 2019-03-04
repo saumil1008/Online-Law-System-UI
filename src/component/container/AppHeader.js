@@ -53,7 +53,6 @@ class AppHeader extends Component {
 }
 
 const mapStateToProps = store => {
-  console.log(store.profile);
   return {
     firstname: store.profile.firstName,
     lastname: store.profile.lastName,

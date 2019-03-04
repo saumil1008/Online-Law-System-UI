@@ -8,13 +8,19 @@ import { bindActionCreators } from "redux";
 import LoginAdmin from "./component/container/LoginAdmin";
 import  AppHeader  from "./component/container/AppHeader";
 import banner from "./assets/corporate_law_vis_avis_litigation_banner.jpg"
+import AddUser from "./component/container/AddUser";
 
 const customHistory = createBrowserHistory();
 
 class App extends Component {
   render() {
     if (!this.props.isLoggedIn) {
-      return <LoginAdmin />;
+      if (this.props.isCreate) {
+        return <AddUser />;
+      }
+      else {
+        return <LoginAdmin />;
+      }
     }
 
     return (
@@ -42,7 +48,8 @@ class App extends Component {
 }
 function mapStateToProps(store) {
   return {
-    isLoggedIn: store.profile.isLoggedIn
+    isLoggedIn: store.profile.isLoggedIn,
+    isCreate: store.profile.isCreate
   };
 }
 

@@ -1,8 +1,17 @@
 import React from "react";
-import { Container, Row, Col, FormGroup, InputGroup, FormControl, Button, Form } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  FormGroup,
+  InputGroup,
+  FormControl,
+  Button,
+  Form
+} from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { doLogin } from "../../actions";
+import { doLogin, setIsCreate } from "../../actions";
 
 class LoginAdmin extends React.Component {
   constructor(props) {
@@ -25,7 +34,7 @@ class LoginAdmin extends React.Component {
   render() {
     return (
       <div>
-        <Container fluid style={{ overflowY: "scroll" }}>
+        <Container fluid>
           <Row>
             <Col sm={4} />
             <Col sm={4}>
@@ -34,7 +43,6 @@ class LoginAdmin extends React.Component {
               <h2>Login</h2>
               <hr />
               <Form>
-                <h3 className="text-white">Sign In</h3>
                 <FormGroup controlId="formHorizontalEmail">
                   <InputGroup>
                     <FormControl
@@ -45,7 +53,6 @@ class LoginAdmin extends React.Component {
                     />
                   </InputGroup>
                 </FormGroup>
-
                 <FormGroup controlId="formHorizontalPassword">
                   <InputGroup>
                     <FormControl
@@ -56,10 +63,17 @@ class LoginAdmin extends React.Component {
                     />
                   </InputGroup>
                 </FormGroup>
-
                 <FormGroup>
                   <Button type="submit" onClick={this.actionLogin}>
                     Sign in
+                  </Button>
+                  &nbsp;&nbsp;&nbsp;Or&nbsp;&nbsp;&nbsp;
+                  <Button
+                    onClick={() => {
+                      this.props.setIsCreate(true);
+                    }}
+                  >
+                    Create new
                   </Button>
                 </FormGroup>
               </Form>
@@ -79,7 +93,8 @@ function mapStateToProps(store) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      login: doLogin
+      login: doLogin,
+      setIsCreate: setIsCreate
     },
     dispatch
   );
