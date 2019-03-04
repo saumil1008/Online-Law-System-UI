@@ -1,32 +1,86 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Panel, Button } from "react-bootstrap";
 import { bindActionCreators } from "redux";
-import { doLogout } from "../../actions/index";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import { findLaw, getLaws } from "../../actions/home";
+import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 
 class Home extends Component {
-    render() {
-        return (
-            <Container fluid>
-                <Row>
-                
-                </Row>
-            </Container>
-        );
-    }
+  constructor(props) {
+    super(props);
+    this.props.getLaws();
+    this.state = {
+      search: ""
+    };
+  }
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  render() {
+    return (
+      <Container fluid>
+        <br />
+        <Form>
+          <Form.Row>
+            <Col>
+              <Form.Label>Law Search</Form.Label>
+            </Col>
+            <Col>
+              <Form.Control
+                type="text"
+                name="search"
+                onChange={this.handleChange}
+                placeholder="Search"
+              />
+            </Col>
+            <Col>
+              <Button
+                onClick={() => {
+                  this.props.findLaw(this.state.search);
+                }}
+              >
+                Search
+              </Button>
+            </Col>
+          </Form.Row>
+        </Form>
+        <hr />
+        <Row>
+          <Col>
+            <BootstrapTable data={this.props.data} hover version="4">
+              <TableHeaderColumn isKey hidden dataField="id">
+                ID
+              </TableHeaderColumn>
+              <TableHeaderColumn dataField="section">Section</TableHeaderColumn>
+              <TableHeaderColumn dataField="rule">Rule</TableHeaderColumn>
+            </BootstrapTable>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 }
 
 const mapStateToProps = store => {
-    return {
-        uname: store.profile.name,
-        uemailId: store.profile.emailId,
-        urole: store.profile.role
-    };
+  console.log(store);
+  return {
+    data: store.homeReducer.data
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({ doLogout: doLogout }, dispatch);
+  return bindActionCreators(
+    {
+      findLaw: findLaw,
+      getLaws: getLaws
+    },
+    dispatch
+  );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

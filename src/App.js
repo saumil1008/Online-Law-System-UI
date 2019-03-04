@@ -6,7 +6,7 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import LoginAdmin from "./component/container/LoginAdmin";
-import { AppHeader } from "./component/container/AppHeader";
+import  AppHeader  from "./component/container/AppHeader";
 import banner from "./assets/corporate_law_vis_avis_litigation_banner.jpg"
 
 const customHistory = createBrowserHistory();
@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <Router history={customHistory}>
         <div>
-          <AppHeader user={this.props.emailId} />
+          <AppHeader />
           <Container fluid className="middlePane">
             <Row>
               <Col lg={2}/>
@@ -29,7 +29,8 @@ class App extends Component {
               </Col>
             </Row>
             <Row>
-              <Col lg={12}>
+              <Col lg={2}/>
+              <Col lg={8}>
                 <Routes />
               </Col>
             </Row>
@@ -41,8 +42,7 @@ class App extends Component {
 }
 function mapStateToProps(store) {
   return {
-    isLoggedIn: store.profile.isLoggedIn,
-    emailId: store.profile.emailId
+    isLoggedIn: store.profile.isLoggedIn
   };
 }
 

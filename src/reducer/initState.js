@@ -1,15 +1,21 @@
 const ProfileReducerInit = {
-    isLoggedIn: true,
-    err: "",
-    user_item: [],
-    id: "",
-    name: "",
-    emailId: "",
-    passKey: "",
-    role: "",
-    active: 0
+  isLoggedIn: false,
 };
 
-export {
-    ProfileReducerInit
+const home = {
+  data: []
 };
+
+const lawyer = {
+  data: []
+};
+
+const court = {
+  data: []
+};
+
+const criminal = {
+  data: []
+};
+
+export { ProfileReducerInit, home, lawyer, court, criminal };

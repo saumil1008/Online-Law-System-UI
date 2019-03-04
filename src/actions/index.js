@@ -3,21 +3,16 @@ import {
     ADD_USER,
     UPDATE_USER,
     DELETE_USER,
-    FETCH_USER
+    FETCH_USER,
+    serverIp
 } from "./actionTypes";
 import axios from "axios";
 
-const serverIp = "";
-
 export const doLogin = (uid, passkey) => {
-    let credentials = {
-        username: uid,
-        password: passkey
-    }
     return dispatch => {
         dispatch({
             type: LOGIN,
-            payload: axios.post( serverIp + "/api/admin/login", JSON.stringify(credentials), {
+            payload: axios.get( serverIp + "/api/user/login?username=" + uid + "&password=" + passkey, {
                 headers: {
                     "Content-Type": "application/json"
                 }

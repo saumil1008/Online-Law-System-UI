@@ -4,7 +4,7 @@ import promise from "redux-promise-middleware";
 import thunk from "redux-thunk";
 export default function configStore() {
   const store = createStore(
-    reducers,applyMiddleware(thunk)
+    reducers,applyMiddleware(thunk, promise)
   );
 
   return store;

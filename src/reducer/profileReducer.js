@@ -17,14 +17,9 @@ const profileReducer = (state = ProfileReducerInit, action) => {
     switch (action.type) {
         case LOGIN_FULFILLED:
             state.isLoggedIn = true;
-            return { ...state, ...action.payload.data.data };
+            return { ...state, ...action.payload.data };
 
         case LOGIN_REJECTED:
-            if (action.payload.response) {
-                toastr.error(action.payload.response.data.message);
-            } else {
-                toastr.warning("Empty Server Response", "No Data Fetched");
-            }
             state.isLoggedIn = false;
             return { ...state };
 
