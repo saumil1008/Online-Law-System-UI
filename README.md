@@ -11,8 +11,8 @@ This project provides FRONT-END application GUI for online law system with basic
 ## Installation
 
 ### Required 
-[node/npm](https://nodejs.org/en/download/) - version 10.x or Later.<br />
-Backend Application Server [Online-Law-System-Api](https://github.com/saumil1008/Online-Law-System-API)
+ 1. [node/npm](https://nodejs.org/en/download/) - version 10.x or Later.<br />
+ 2. Backend Application Server [Online-Law-System-Api](https://github.com/saumil1008/Online-Law-System-API)
 
 ### Recommandation
 A Good Text Editor (VS Code, WebStorm, Sublime Text, etc.)
